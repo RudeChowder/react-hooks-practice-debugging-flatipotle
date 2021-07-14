@@ -11,11 +11,13 @@ const DEFAULT_STATE = {
   sides: [],
 };
 
-function Form() {
+function Form(props) {
   const [formState, setFormState] = useState(DEFAULT_STATE);
+  console.log(props)
 
-  function handleSubmit() {
+  function handleSubmit(event) {
     event.preventDefault();
+    
     props.addOrder(formState);
 
     setFormState({
@@ -24,7 +26,7 @@ function Form() {
     event.target.reset();
   }
 
-  function handleChange() {
+  function handleChange(event) {
     const itemType = event.target.name;
     const item = event.target.value;
 
@@ -39,6 +41,7 @@ function Form() {
         [itemType]: formState[itemType].concat(item),
       });
     }
+    console.log(formState)
   }
 
   return (
